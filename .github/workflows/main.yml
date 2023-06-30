@@ -1,18 +1,15 @@
-on: push
-name: Test
-jobs:
-  test:
-    name: Test
-    runs-on: iOS-latest
-    strategy:
-        matrix:
-          destination: ['platform=iOS Simulator,name=Simulator de test,OS=16.4']
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Build and test
-        run: |
-          xcodebuild clean test -project UnitTestGithubActions.xcodeproj -scheme UnitTestGithubActions -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-          bash <(curl -s https://codecov.io/bash)
-#        env:
-#         destination: ${{ matrix.destination }}
+
+language: swift
+osx_image: xcode14.3
+
+env:
+  matrix:
+   - DESTINATION="platform=iOS Simulator,OS=12.2,name=iPhone X"
+   - DESTINATION="platform=tvOS Simulator,OS=12.2,name=Apple TV 4K"
+
+
+script:
+   - xcodebuild clean test -project UnitTestGithubActions.xcodeproj -scheme UnitTestGithubActions -destination "$DESTINATION" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+   
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
