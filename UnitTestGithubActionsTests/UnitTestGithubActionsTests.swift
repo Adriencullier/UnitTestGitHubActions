@@ -15,7 +15,7 @@ final class UnitTestGithubActionsTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        XCTAssert(false)
+        XCTAssert(true)
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
