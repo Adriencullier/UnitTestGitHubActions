@@ -3,7 +3,7 @@ name: Test
 jobs:
   test:
     name: Test
-    runs-on: macOS-latest
+    runs-on: iOS-latest
     strategy:
         matrix:
           destination: ['platform=iOS Simulator,name=Simulator de test,OS=16.4']
@@ -14,5 +14,5 @@ jobs:
         run: |
           xcodebuild clean test -project UnitTestGithubActions.xcodeproj -scheme UnitTestGithubActions -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
           bash <(curl -s https://codecov.io/bash)
-        env:
-         destination: ${{ matrix.destination }}
+#        env:
+#         destination: ${{ matrix.destination }}
