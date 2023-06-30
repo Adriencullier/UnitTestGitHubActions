@@ -4,9 +4,9 @@ jobs:
   test:
     name: Test
     runs-on: macOS-latest
-    strategy:
-        matrix:
-          destination: ['platform=iOS Simulator,OS=latest,name=iPhone X']
+#    strategy:
+#        matrix:
+#          destination: ['platform=iOS Simulator,OS=latest,name=iPhone X']
     steps:
       - name: Checkout
         uses: actions/checkout@master
